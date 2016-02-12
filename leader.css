@@ -1,0 +1,28 @@
+
+
+
+    .done-true {
+    text-decoration: line-through;
+    color: grey;
+    }
+
+@media screen and (max-width: 480px) { 
+        body {
+          font-size: 40px;
+        }
+
+        .hidden-phone {
+           display: block;
+        }
+    }
+@media screen and (max-width: 768px) {
+    body {
+        font-size:40px;
+    }
+}
+ 
+@media screen and (max-width: 568px) {
+    body {
+        font-size:40px;
+    }
+}
