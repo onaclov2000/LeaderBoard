@@ -7,6 +7,7 @@ angular.module('myapp', ['firebase'])
             var ref = new Firebase("https://onaclovtech-apps.firebaseio.com/CS_7637/");
             var sync = $firebase(ref);
             $scope.todos = sync.$asObject();
+            $scope.leaders = sync.$asArray();
         }
     ]).filter("textFilter", function() {
     return function(input,text) {
@@ -78,13 +79,48 @@ angular.module('myapp', ['firebase'])
               {
                  obj[prop['user']] = prop
               }
-              console.log(obj);
               
             });
             angular.forEach(obj, function(prop) {
               sorted.push(prop);
               
             });
+          }
+        }
+      }
+      
+      return sorted;
+    };
+  }).filter("scoreFilter", function() {
+    return function(input) {
+      var sorted = [];
+      var obj = {};
+      if (input) {
+        if (!input.$getIndex || typeof input.$getIndex != "function") {
+          // input is not an angularFire instance
+          if (angular.isArray(input)) {
+            // If input is an array, copy it
+            sorted = input.slice(0);
+            
+            
+            angular.forEach(input, function(prop) {
+               console.log(prop);
+  //            if (prop['user'] in obj){
+    //             if (obj[prop['user']]['time'] > prop['user']['time']){
+      //              obj[prop['user']] = prop
+        //         }
+          //    }
+            //  else
+            //  {
+             //    obj[prop['user']] = prop
+             // }
+              //console.log(obj);
+              
+            });
+            //angular.forEach(obj, function(prop) {
+         //     sorted.push(prop);
+          //
+          //  });
           }
         }
       }
