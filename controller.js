@@ -104,19 +104,23 @@ angular.module('myapp', ['firebase'])
             
             
             angular.forEach(input, function(prop) {
-               console.log(prop);
-  //            if (prop['user'] in obj){
-    //             if (obj[prop['user']]['time'] > prop['user']['time']){
-      //              obj[prop['user']] = prop
-        //         }
-          //    }
-            //  else
-            //  {
-             //    obj[prop['user']] = prop
-             // }
-              //console.log(obj);
-              
+               angular.forEach(prop['scores'], function(score) {
+                  //console.log(prop['$id']);
+                  console.log(score);
+                  if (score['user'] in obj){
+                     obj[score['user']] = obj[score['user']] + score['value'];
+//                     if (obj[score['user']] < score['value']){
+ //                       obj[score['user']] = score['value']
+//                     }
+                  }
+                  else{
+                      obj[score['user']] = score['value']
+                  }
+               });
             });
+          console.log("OJB Results");
+          console.log(obj);
+          sorted = obj;
             //angular.forEach(obj, function(prop) {
          //     sorted.push(prop);
           //
