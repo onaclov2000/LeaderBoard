@@ -31,7 +31,7 @@
       <th>Score</th>
       <th>Submitted</th>
    </tr>
-   <tr class="list-group" ng-repeat="score in todo.scores | textFilter: search">
+   <tr class="list-group" ng-repeat="score in todo.scores | textFilter: search | dateFilter">
       <td>
          {{score.user}}
       </td>
