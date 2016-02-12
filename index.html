@@ -17,6 +17,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+   <input name="search" type="text" ng-model="search" />
+
 	<h2>Scores List</h2>
 	<div class="container-fluid" ng-controller="TodoCtrl">
 
@@ -29,7 +31,7 @@
       <th>Score</th>
       <th>Submitted</th>
    </tr>
-   <tr class="list-group" ng-repeat="(key,score) in todo.scores">
+   <tr class="list-group" ng-repeat="score in todo.scores | textFilter: search">
       <td>
          {{score.user}}
       </td>
