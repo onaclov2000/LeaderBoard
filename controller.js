@@ -13,18 +13,14 @@ angular.module('myapp', ['firebase'])
       var sorted = [];
       
       if (input) {
-//         console.log(input);
         if (!input.$getIndex || typeof input.$getIndex != "function") {
           // input is not an angularFire instance
           if (angular.isArray(input)) {
-            console.log("Array");
             // If input is an array, copy it
             sorted = input.slice(0);
           } else if (angular.isObject(input)) {
             // If input is an object, map it to an array
             angular.forEach(input, function(prop) {
-              console.log(prop);
-              console.log(text);
               if( text && text.length > 0){
                  if (prop['user'].indexOf(text) > -1){
                     sorted.push(prop);
@@ -36,7 +32,6 @@ angular.module('myapp', ['firebase'])
             });
           }
         } else {
-          console.log("ELSE");
           // input is an angularFire instance
           var index = input.$getIndex();
           if (index.length > 0) {
@@ -56,6 +51,40 @@ angular.module('myapp', ['firebase'])
                 //
               }
             }
+          }
+        }
+      }
+      
+      return sorted;
+    };
+  }).filter("dateFilter", function() {
+    return function(input) {
+      var sorted = [];
+      var obj = {};
+      if (input) {
+        if (!input.$getIndex || typeof input.$getIndex != "function") {
+          // input is not an angularFire instance
+          if (angular.isArray(input)) {
+            // If input is an array, copy it
+            //sorted = input.slice(0);
+            
+            angular.forEach(input, function(prop) {
+              if (prop['user'] in obj){
+                 if (obj[prop['user']]['time'] > prop['user']['time']){
+                    obj[prop['user']] = prop
+                 }
+              }
+              else
+              {
+                 obj[prop['user']] = prop
+              }
+              console.log(obj);
+              
+            });
+            angular.forEach(obj, function(prop) {
+              sorted.push(prop);
+              
+            });
           }
         }
       }
