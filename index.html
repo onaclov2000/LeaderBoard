@@ -1,49 +1,40 @@
-
 <!doctype html>
 <html lang="en" ng-app="myapp">
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.min.js"></script>
-    <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/0.8.2/angularfire.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/0.8.2/angularfire.min.js"></script>
 	<script src="controller.js"></script>
 	<link rel="stylesheet" href="leader.css">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h2>Scores List</h2>
-	<div class="container-fluid" ng-controller="TodoCtrl">
-
-
-<div ng-repeat="(key,todo) in todos">
-   <h2>{{key}}</h2>
-   <table class="table table-striped table-condensed">
-   <tr class="list-group">
-      <th>User</th>
-      <th>Score</th>
-      <th>Submitted</th>
-   </tr>
-   <tr class="list-group" ng-repeat="(key,score) in todo.scores">
-      <td>
-         {{score.user}}
-      </td>
-      <td>{{score.value}}</td>
-      <td><small>{{score.time|date : short}}</small></td>
-   </tr>
-
-</div>
-
-
+ 	<div class="container-fluid" ng-controller="TodoCtrl">
+	  <h2>Scores List</h2>
+    <div ng-repeat="(key,todo) in todos">
+      <h2>{{key}}</h2>
+      <table class="table table-striped table-condensed">
+      <tr class="list-group">
+          <th>User</th>
+          <th>Score</th>
+          <th>Submitted</th>
+      </tr>
+      <tr class="list-group" ng-repeat="(key,score) in todo.scores">
+          <td>
+            {{score.user}}
+          </td>
+          <td ng-class="{red: (score.value < 0.5), yellow: (score.value >= 0.5), green: (score.value == 1.0)}">{{score.value}}</td>
+          <td><small>{{score.time|date : short}}</small></td>
+      </tr>
+    </div>
 	</div>
-
-
-
 </body>
 </html>
 
