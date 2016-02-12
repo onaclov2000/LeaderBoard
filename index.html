@@ -37,7 +37,7 @@
       <td>
          {{score.user}}
       </td>
-      <td>{{score.value}}</td>
+      <td ng-class="{red: (score.value < 0.5), yellow: (score.value >= 0.5), green: (score.value == 1.0)">{{score.value}}</td>
       <td><small>{{score.time|date : short}}</small></td>
    </tr>
 
