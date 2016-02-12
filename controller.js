@@ -109,22 +109,13 @@ angular.module('myapp', ['firebase'])
                   console.log(score);
                   if (score['user'] in obj){
                      obj[score['user']] = obj[score['user']] + score['value'];
-//                     if (obj[score['user']] < score['value']){
- //                       obj[score['user']] = score['value']
-//                     }
                   }
                   else{
                       obj[score['user']] = score['value']
                   }
                });
             });
-          console.log("OJB Results");
-          console.log(obj);
           sorted = obj;
-            //angular.forEach(obj, function(prop) {
-         //     sorted.push(prop);
-          //
-          //  });
           }
         }
       }
