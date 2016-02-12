@@ -40,11 +40,9 @@ angular.module('myapp', ['firebase'])
               var val = input[index[i]];
               if (val) {
                 val.$id = index[i];
-                
               if( text && text.length > 0 && val.body.indexOf(text) > -1){
                  sorted.push(val);
               }else{
-               
                 if(!text || text.length === 0 ){
                    sorted.push(val);
                  }
@@ -55,7 +53,6 @@ angular.module('myapp', ['firebase'])
           }
         }
       }
-      
       return sorted;
     };
   }).filter("dateFilter", function() {
@@ -93,33 +90,29 @@ angular.module('myapp', ['firebase'])
     };
   }).filter("scoreFilter", function() {
     return function(input) {
-      var sorted = [];
       var obj = {};
+      var max = {};
       if (input) {
         if (!input.$getIndex || typeof input.$getIndex != "function") {
           // input is not an angularFire instance
           if (angular.isArray(input)) {
             // If input is an array, copy it
-            sorted = input.slice(0);
-            
-            
             angular.forEach(input, function(prop) {
                angular.forEach(prop['scores'], function(score) {
                   //console.log(prop['$id']);
-                  console.log(score);
+                  //console.log(score);
                   if (score['user'] in obj){
-                     obj[score['user']] = obj[score['user']] + score['value'];
+                      obj[score['user']] = {'score': obj[score['user']]['score'] + score['value'],
+                                            'max_possible': obj[score['user']]['max_possible'] + 1};
                   }
                   else{
-                      obj[score['user']] = score['value']
+                      obj[score['user']] = {'score': score['value'], 'max_possible': 1};
                   }
                });
             });
-          sorted = obj;
           }
         }
       }
-      
-      return sorted;
+      return obj;
     };
   });
