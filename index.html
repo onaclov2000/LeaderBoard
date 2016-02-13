@@ -22,11 +22,13 @@
       <tr class="list-group">
         <th>User</th>
         <th>Score</th>
+        <th># Attempted</th>
         <th>% out of submitted</th>
       </tr>
       <tr class="list-group" ng-repeat="(key,score_and_value) in leaders | scoreFilter">
         <td>{{key}}</td>
-        <td>{{score_and_value['score']}}/{{score_and_value['max_possible']}}</td>
+        <td>{{score_and_value['score']}}</td>
+        <td>{{score_and_value['max_possible']}}</td>
         <td>{{100 * score_and_value['score']/score_and_value['max_possible']}}%</td>
       </tr>
     </table>
